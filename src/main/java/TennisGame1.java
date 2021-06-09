@@ -23,7 +23,7 @@ public class TennisGame1 implements TennisGame {
         int tempScore=0;
         if (m_score1==m_score2)
         {
-            score = getScoreText(m_score1);
+            score = getScore1Text(m_score1);
            /* switch (m_score1)
             {
                 case 0:
@@ -53,9 +53,18 @@ public class TennisGame1 implements TennisGame {
         {
             for (int i=1; i<3; i++)
             {
-                if (i==1) tempScore = m_score1;
-                else { score+="-"; tempScore = m_score2;}
-                switch(tempScore)
+               // score += (i ==1)? "" : "-";
+               //  tempScore = (i ==1)? m_score1 : m_score2;
+
+                if (i==1) tempScore = m_score1;///  Fifteen-All-Love
+                else {
+                    score+="-";
+                    tempScore = m_score2; //  Fifteen-All-Love
+                }
+                //score+="-";
+                score+=addTempScore(tempScore);
+
+                /*switch(tempScore) // score 1 o score 2
                 {
                     case 0:
                         score+="Love";
@@ -69,13 +78,33 @@ public class TennisGame1 implements TennisGame {
                     case 3:
                         score+="Forty";
                         break;
-                }
+                }*/
             }
         }
         return score;
     }
 
-    public String getScoreText(int m_score1){
+    public String addTempScore(int tempScore){
+        switch(tempScore) // score 1 o score 2
+        {
+            case 0:
+                return "Love";
+                //break;
+            case 1:
+                return "Fifteen";
+                //break;
+            case 2:
+                return "Thirty";
+               // break;
+            case 3:
+                return "Forty";
+               // break;
+            default:
+                return "";
+        }
+    }
+
+    public String getScore1Text(int m_score1){
         switch (m_score1)
         {
             case 0:
